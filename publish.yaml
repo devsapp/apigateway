@@ -1,10 +1,229 @@
 Type: Component
 Name: apigateway
-Provider:
-  - 其它
 Version: 0.0.1
-Description: 初始化component模板
-HomePage: https://www.serverless-devs.com
-Tags: #标签详情
-  - 模板
-Category: 其它
+Category: 云应用
+HomePage: 'https://www.serverless-devs.com'
+Tags:
+  - 云应用
+Description: 阿里云 apigateway 组件
+Commands:
+  deploy: 部署api
+Properties:
+  regionId:
+    Description: 网关分组部署的地域
+    Required: true
+    Example: ''
+    Default: cn-hongkong
+    Type:
+      - String
+  customerDomain:
+    Description: 用户自定义域名
+    Required: false
+    Example: ''
+    Default: ''
+    Type:
+      - String
+  groupName:
+    Description: 分组名，详细查看apigateway关于分组的介绍
+    Required: true
+    Example: ''
+    Default: ''
+    Type:
+      - String
+  stageName:
+    Description: 环境配置，可以分为REEASE(线上环境)，TEST(测试环境)等
+    Required: true
+    Example: RELEASE |TEST
+    Default: 'RELEASE '
+    Type:
+      - String
+  apis:
+    Description: api 列表
+    Required: true
+    Example: ''
+    Default: ''
+    Type:
+      - List<Struct>:
+          apiName:
+            Description: api名字
+            Required: true
+            Example: ''
+            Default: ''
+            Type:
+              - String
+          regionId:
+            Description: api部署的地域，如果不填写，则保持跟顶部定义的regionId一致
+            Required: false
+            Example: ''
+            Default: ''
+            Type:
+              - String
+          requestConfig:
+            Description: 请求配置
+            Required: true
+            Example: ''
+            Default: ''
+            Type:
+              - Struct:
+                  requestPath:
+                    Description: api请求的路径
+                    Required: true
+                    Example: /
+                    Default: /
+                    Type:
+                      - String
+                  requestHttpMethod:
+                    Description: api请求的方法
+                    Required: true
+                    Example: GET|POST|ANY
+                    Default: GET
+                    Type:
+                      - String
+                  requestMode:
+                    Description: 入参请求模式
+                    Required: false
+                    Example: PASSTHROUGH|MAPPING
+                    Default: PASSTHROUGH
+                    Type:
+                      - String
+                  bodyModel:
+                    Description: 请求体
+                    Required: false
+                    Example: ''
+                    Default: ''
+                    Type:
+                      - String
+                  bodyFormat:
+                    Description: ''
+                    Required: true
+                    Example: ''
+                    Default: ''
+                    Type:
+                      - String
+                  postBodyDescription:
+                    Description: ''
+                    Required: true
+                    Example: ''
+                    Default: ''
+                    Type:
+                      - String
+          serviceConfig:
+            Description: 后端服务配置
+            Required: true
+            Example: ''
+            Default: ''
+            Type:
+              - 'Struct[函数计算配置模式]':
+                  serviceProtocol:
+                    Description: 后端服务类型
+                    Required: true
+                    Example: HTTP|HTTPS|FunctionCompute|OSS
+                    Default: FunctionCompute
+                    Type:
+                      - String
+                  servicePath:
+                    Description: 后端服务路径
+                    Required: true
+                    Example: ''
+                    Default: /
+                    Type:
+                      - String
+                  functionComputeConfig:
+                    Description: 函数计算配置项
+                    Required: true
+                    Example: ''
+                    Default: ''
+                    Type:
+                      - 'Struct[http函数类型配置]':
+                          fcRegionId:
+                            Description: 函数计算的region
+                            Required: true
+                            Example: cn-hongkong|cn-hangzhou
+                            Default: cn-hongkong
+                            Type:
+                              - String
+                          fcBaseUrl:
+                            Description: fc 触发器基础地址
+                            Required: true
+                            Example: ''
+                            Default: ''
+                            Type:
+                              - String
+                          path:
+                            Description: 函数计算访问路径
+                            Required: true
+                            Example: ''
+                            Default: ''
+                            Type:
+                              - String
+                          fcType:
+                            Description: 函数计算类型
+                            Required: true
+                            Example: HttpTrigger
+                            Default: HttpTrigger
+                            Type:
+                              - String
+                          onlyBusinessPath:
+                            Description: 是否只传递路径
+                            Required: false
+                            Example: ''
+                            Default: 'true'
+                            Type:
+                              - Boolean
+                          contentTypeCategory:
+                            Description: ContentType是否透传
+                            Required: false
+                            Example: CLIENT
+                            Default: CLIENT
+                            Type:
+                              - String
+                  resultType:
+                    Description: 返回类型
+                    Required: false
+                    Example: JSON
+                    Default: JSON
+                    Type:
+                      - String
+              - 'Struct[普通HTTP(s)模式]':
+                  serviceAddress:
+                    Description: 后端服务地址
+                    Required: true
+                    Example: ''
+                    Default: ''
+                    Type:
+                      - String
+                  aoneAppName:
+                    Description: 后端应用命名
+                    Required: true
+                    Example: cloudapi-openapi
+                    Default: cloudapi-openapi
+                    Type:
+                      - String
+                  servicePath:
+                    Description: 后端服务路径
+                    Required: true
+                    Example: /index.html
+                    Default: /
+                    Type:
+                      - String
+                  serviceHttpMethod:
+                    Description: 后端服务的方法
+                    Required: true
+                    Example: GET
+                    Default: GET
+                    Type:
+                      - String
+                  serviceProtocol:
+                    Description: 后端服务协议
+                    Required: true
+                    Example: HTTP
+                    Default: HTTP
+                    Type:
+                      - String
+                  resultType:
+                    Description: 返回类型
+                    Required: true
+                    Example: JSON
+                    Default: JSON
+                    Type:
+                      - String

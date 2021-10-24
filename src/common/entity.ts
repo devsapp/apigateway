@@ -143,7 +143,7 @@ export interface ICredentials {
         path: '',
         contentTypeCategory: 'CLIENT',
         contentTypeValue: '',
-        onlyBusinessPath: false,
+        onlyBusinessPath: true,
       }
 
     },
