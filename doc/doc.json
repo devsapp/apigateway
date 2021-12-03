@@ -80,7 +80,7 @@
 					}
 				},
 				{
-					"id": 43,
+					"id": 63,
 					"name": "inputs",
 					"kind": 1024,
 					"kindString": "Property",
@@ -97,7 +97,27 @@
 					}
 				},
 				{
-					"id": 26,
+					"id": 6,
+					"name": "region",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 10,
+							"character": 15
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "any"
+					}
+				},
+				{
+					"id": 28,
 					"name": "QueryApiByName",
 					"kind": 2048,
 					"kindString": "Method",
@@ -105,20 +125,20 @@
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 90,
+							"line": 92,
 							"character": 22
 						}
 					],
 					"signatures": [
 						{
-							"id": 27,
+							"id": 29,
 							"name": "QueryApiByName",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 28,
+									"id": 30,
 									"name": "client",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -129,7 +149,7 @@
 									}
 								},
 								{
-									"id": 29,
+									"id": 31,
 									"name": "__namedParameters",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -154,7 +174,7 @@
 					]
 				},
 				{
-					"id": 46,
+					"id": 66,
 					"name": "__doc",
 					"kind": 2048,
 					"kindString": "Method",
@@ -168,14 +188,14 @@
 					],
 					"signatures": [
 						{
-							"id": 47,
+							"id": 67,
 							"name": "__doc",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 48,
+									"id": 68,
 									"name": "projectName",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -204,7 +224,7 @@
 					}
 				},
 				{
-					"id": 44,
+					"id": 64,
 					"name": "__getBasePath",
 					"kind": 2048,
 					"kindString": "Method",
@@ -218,7 +238,7 @@
 					],
 					"signatures": [
 						{
-							"id": 45,
+							"id": 65,
 							"name": "__getBasePath",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -239,7 +259,111 @@
 					}
 				},
 				{
-					"id": 22,
+					"id": 69,
+					"name": "__report",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isProtected": true
+					},
+					"sources": [
+						{
+							"fileName": "common/base.ts",
+							"line": 102,
+							"character": 22
+						}
+					],
+					"signatures": [
+						{
+							"id": 70,
+							"name": "__report",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 71,
+									"name": "reportData",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "any"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "any"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "BaseComponent.__report"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "BaseComponent.__report"
+					}
+				},
+				{
+					"id": 55,
+					"name": "bindDomain",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 157,
+							"character": 25
+						}
+					],
+					"signatures": [
+						{
+							"id": 56,
+							"name": "bindDomain",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "域名绑定"
+							},
+							"parameters": [
+								{
+									"id": 57,
+									"name": "inputs",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "\n"
+									},
+									"type": {
+										"type": "reference",
+										"name": "InputProps"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"typeArguments": [
+									{
+										"type": "intrinsic",
+										"name": "void"
+									}
+								],
+								"name": "Promise"
+							}
+						}
+					]
+				},
+				{
+					"id": 24,
 					"name": "createOrUpdateApi",
 					"kind": 2048,
 					"kindString": "Method",
@@ -247,13 +371,13 @@
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 63,
+							"line": 65,
 							"character": 25
 						}
 					],
 					"signatures": [
 						{
-							"id": 23,
+							"id": 25,
 							"name": "createOrUpdateApi",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -263,7 +387,7 @@
 							},
 							"parameters": [
 								{
-									"id": 24,
+									"id": 26,
 									"name": "client",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -274,7 +398,7 @@
 									}
 								},
 								{
-									"id": 25,
+									"id": 27,
 									"name": "params",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -299,7 +423,7 @@
 					]
 				},
 				{
-					"id": 38,
+					"id": 58,
 					"name": "deploy",
 					"kind": 2048,
 					"kindString": "Method",
@@ -309,13 +433,13 @@
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 125,
+							"line": 180,
 							"character": 21
 						}
 					],
 					"signatures": [
 						{
-							"id": 39,
+							"id": 59,
 							"name": "deploy",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -326,7 +450,7 @@
 							},
 							"parameters": [
 								{
-									"id": 40,
+									"id": 60,
 									"name": "inputs",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -344,23 +468,23 @@
 									{
 										"type": "reflection",
 										"declaration": {
-											"id": 41,
+											"id": 61,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"children": [
 												{
-													"id": 42,
-													"name": "hello",
+													"id": 62,
+													"name": "domain",
 													"kind": 1024,
 													"kindString": "Property",
 													"flags": {},
 													"type": {
 														"type": "intrinsic",
-														"name": "string"
+														"name": "any"
 													},
-													"defaultValue": "'hanxie'"
+													"defaultValue": "..."
 												}
 											],
 											"groups": [
@@ -368,7 +492,7 @@
 													"title": "Properties",
 													"kind": 1024,
 													"children": [
-														42
+														62
 													]
 												}
 											]
@@ -381,7 +505,106 @@
 					]
 				},
 				{
-					"id": 10,
+					"id": 44,
+					"name": "executeGroup",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isPrivate": true
+					},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 128,
+							"character": 28
+						}
+					],
+					"signatures": [
+						{
+							"id": 45,
+							"name": "executeGroup",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 46,
+									"name": "client",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "any"
+									}
+								},
+								{
+									"id": 47,
+									"name": "__namedParameters",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "Object"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"typeArguments": [
+									{
+										"type": "reflection",
+										"declaration": {
+											"id": 48,
+											"name": "__type",
+											"kind": 65536,
+											"kindString": "Type literal",
+											"flags": {},
+											"children": [
+												{
+													"id": 49,
+													"name": "GroupId",
+													"kind": 1024,
+													"kindString": "Property",
+													"flags": {},
+													"type": {
+														"type": "intrinsic",
+														"name": "any"
+													}
+												},
+												{
+													"id": 50,
+													"name": "SubDomain",
+													"kind": 1024,
+													"kindString": "Property",
+													"flags": {},
+													"type": {
+														"type": "intrinsic",
+														"name": "any"
+													}
+												}
+											],
+											"groups": [
+												{
+													"title": "Properties",
+													"kind": 1024,
+													"children": [
+														49,
+														50
+													]
+												}
+											]
+										}
+									}
+								],
+								"name": "Promise"
+							}
+						}
+					]
+				},
+				{
+					"id": 11,
 					"name": "getClient",
 					"kind": 2048,
 					"kindString": "Method",
@@ -391,21 +614,32 @@
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 35,
+							"line": 36,
 							"character": 19
 						}
 					],
 					"signatures": [
 						{
-							"id": 11,
+							"id": 12,
 							"name": "getClient",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 12,
+									"id": 13,
 									"name": "credentials",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "any"
+									}
+								},
+								{
+									"id": 14,
+									"name": "region",
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
@@ -423,7 +657,7 @@
 					]
 				},
 				{
-					"id": 30,
+					"id": 32,
 					"name": "getGroupId",
 					"kind": 2048,
 					"kindString": "Method",
@@ -433,13 +667,13 @@
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 100,
+							"line": 102,
 							"character": 26
 						}
 					],
 					"signatures": [
 						{
-							"id": 31,
+							"id": 33,
 							"name": "getGroupId",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -447,7 +681,7 @@
 							"comment": {},
 							"parameters": [
 								{
-									"id": 32,
+									"id": 34,
 									"name": "client",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -461,7 +695,7 @@
 									}
 								},
 								{
-									"id": 33,
+									"id": 35,
 									"name": "params",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -489,7 +723,7 @@
 					]
 				},
 				{
-					"id": 13,
+					"id": 15,
 					"name": "invokeApi",
 					"kind": 2048,
 					"kindString": "Method",
@@ -499,20 +733,20 @@
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 47,
+							"line": 49,
 							"character": 25
 						}
 					],
 					"signatures": [
 						{
-							"id": 14,
+							"id": 16,
 							"name": "invokeApi",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 15,
+									"id": 17,
 									"name": "method",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -523,7 +757,7 @@
 									}
 								},
 								{
-									"id": 16,
+									"id": 18,
 									"name": "client",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -534,7 +768,7 @@
 									}
 								},
 								{
-									"id": 17,
+									"id": 19,
 									"name": "params",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -559,7 +793,66 @@
 					]
 				},
 				{
-					"id": 34,
+					"id": 36,
+					"name": "modifyGroup",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isPrivate": true
+					},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 120,
+							"character": 27
+						}
+					],
+					"signatures": [
+						{
+							"id": 37,
+							"name": "modifyGroup",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 38,
+									"name": "client",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "any"
+									}
+								},
+								{
+									"id": 39,
+									"name": "params",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "any"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"typeArguments": [
+									{
+										"type": "intrinsic",
+										"name": "void"
+									}
+								],
+								"name": "Promise"
+							}
+						}
+					]
+				},
+				{
+					"id": 40,
 					"name": "publishApi",
 					"kind": 2048,
 					"kindString": "Method",
@@ -569,20 +862,20 @@
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 116,
+							"line": 124,
 							"character": 26
 						}
 					],
 					"signatures": [
 						{
-							"id": 35,
+							"id": 41,
 							"name": "publishApi",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 36,
+									"id": 42,
 									"name": "client",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -593,7 +886,7 @@
 									}
 								},
 								{
-									"id": 37,
+									"id": 43,
 									"name": "params",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -618,28 +911,28 @@
 					]
 				},
 				{
-					"id": 18,
-					"name": "searchGroup",
+					"id": 20,
+					"name": "searchGroupByName",
 					"kind": 2048,
 					"kindString": "Method",
 					"flags": {},
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 55,
-							"character": 19
+							"line": 57,
+							"character": 25
 						}
 					],
 					"signatures": [
 						{
-							"id": 19,
-							"name": "searchGroup",
+							"id": 21,
+							"name": "searchGroupByName",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 20,
+									"id": 22,
 									"name": "client",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -650,7 +943,7 @@
 									}
 								},
 								{
-									"id": 21,
+									"id": 23,
 									"name": "GroupName",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -675,7 +968,66 @@
 					]
 				},
 				{
-					"id": 6,
+					"id": 51,
+					"name": "setDomain",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isPrivate": true
+					},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 139,
+							"character": 25
+						}
+					],
+					"signatures": [
+						{
+							"id": 52,
+							"name": "setDomain",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 53,
+									"name": "client",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "any"
+									}
+								},
+								{
+									"id": 54,
+									"name": "params",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "any"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"typeArguments": [
+									{
+										"type": "intrinsic",
+										"name": "void"
+									}
+								],
+								"name": "Promise"
+							}
+						}
+					]
+				},
+				{
+					"id": 7,
 					"name": "titleCase",
 					"kind": 2048,
 					"kindString": "Method",
@@ -685,20 +1037,20 @@
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 15,
+							"line": 16,
 							"character": 19
 						}
 					],
 					"signatures": [
 						{
-							"id": 7,
+							"id": 8,
 							"name": "titleCase",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 8,
+									"id": 9,
 									"name": "data",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -712,7 +1064,7 @@
 							"type": {
 								"type": "reflection",
 								"declaration": {
-									"id": 9,
+									"id": 10,
 									"name": "__type",
 									"kind": 65536,
 									"kindString": "Type literal",
@@ -736,24 +1088,30 @@
 					"kind": 1024,
 					"children": [
 						5,
-						43
+						63,
+						6
 					]
 				},
 				{
 					"title": "Methods",
 					"kind": 2048,
 					"children": [
-						26,
-						46,
+						28,
+						66,
+						64,
+						69,
+						55,
+						24,
+						58,
 						44,
-						22,
-						38,
-						10,
-						30,
-						13,
-						34,
-						18,
-						6
+						11,
+						32,
+						15,
+						36,
+						40,
+						20,
+						51,
+						7
 					]
 				}
 			],

@@ -48,7 +48,8 @@ export default class ComponentDemo extends BaseComponent {
 
   private async invokeApi(method, client, params) {
     const requestOption = {
-      method: 'POST'
+      method: 'POST',
+      timeout: 20000
     };
     return await client.request(method, params, requestOption);
   }
@@ -146,10 +147,31 @@ export default class ComponentDemo extends BaseComponent {
     try {
       await this.invokeApi('SetDomain', client, data);
     } catch (e) {
-    
+
     }
 
   }
+  /**
+   * 域名绑定
+   * @param inputs 
+   */
+  public async bindDomain(inputs: InputProps) {
+    const { credentials } = inputs;
+
+    let { groupName, stageName = 'RELEASE', regionId, basePath = '/', description = '', instanceId = 'api-shared-vpc-001', customerDomain } = inputs.props;
+    let client = this.getClient(credentials, regionId);
+    let { GroupId } = await this.executeGroup(client, { groupName, regionId, basePath, description, instanceId });
+
+    if (customerDomain) { // 如果设定了自定义域名
+      await this.setDomain(client, {
+        GroupId,
+        DomainName: customerDomain,
+        RegionId: regionId,
+        BindStageName: stageName
+      })
+    }
+  }
+
   /**
   * demo 实例
   * @param inputs
@@ -160,20 +182,10 @@ export default class ComponentDemo extends BaseComponent {
     const { credentials } = inputs;
     const { AccountID } = credentials;
     const apiArn = `acs:ram::${AccountID}:role/aliyunserviceroleforapigateway`;
-    let { apis, groupName, stageName, regionId, basePath = '/', description = '', instanceId = 'api-shared-vpc-001', customerDomain } = inputs.props;
-
+    let { apis, groupName, stageName = 'RELEASE', regionId, basePath = '/', description = '', instanceId = 'api-shared-vpc-001', customerDomain } = inputs.props;
     const promiseData = [];
     let client = this.getClient(credentials, regionId);
     let { GroupId, SubDomain } = await this.executeGroup(client, { groupName, regionId, basePath, description, instanceId });
-
-    if (customerDomain) { // 如果设定了自定义域名
-      await this.setDomain(client, {
-        GroupId,
-        DomainName: customerDomain,
-        RegionId: regionId,
-        BindStageName: stageName
-      })
-    }
     apis.forEach((api) => {
       promiseData.push(new Promise(async (resolve, reject) => {
         try {
@@ -201,7 +213,7 @@ export default class ComponentDemo extends BaseComponent {
           setTimeout(() => {
             console.log(`${api.apiName} is successed deployed`);
             resolve('');
-          });
+          },500);
         } catch (e) {
           reject(e);
         }
@@ -210,8 +222,15 @@ export default class ComponentDemo extends BaseComponent {
     });
 
     await Promise.all(promiseData);
-
-
+    this.__report({
+      name: 'apigateway',
+      access: _.get(inputs, 'project.access'),
+      content: {
+        groupName,
+        apis,
+        domain: customerDomain || SubDomain
+      }
+    })
     return { domain: SubDomain };
   }
 

@@ -27,6 +27,11 @@ export default class ComponentDemo extends BaseComponent {
     private executeGroup;
     private setDomain;
     /**
+     * 域名绑定
+     * @param inputs
+     */
+    bindDomain(inputs: InputProps): Promise<void>;
+    /**
     * demo 实例
     * @param inputs
     * @returns

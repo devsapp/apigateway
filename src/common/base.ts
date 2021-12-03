@@ -99,4 +99,18 @@ export default class BaseComponent {
         }
     }
 
+    protected __report(reportData) {
+        if (process && process.send) {
+            const { name, content, access } = reportData
+            process.send({
+                action: 'resource',
+                data: {
+                    access,
+                    name,
+                    content: JSON.stringify(content)
+                }
+            });
+            return content;
+        };
+    }
 }

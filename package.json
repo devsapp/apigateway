@@ -1,6 +1,6 @@
 {
   "name": "apigateway",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "This is a component for alibaba cloud apigateway",
   "keywords": [
     "Serverless",
@@ -23,7 +23,7 @@
   },
   "scripts": {
     "start": "npm run watch",
-    "watch": "npm run doc && tsc -w",
+    "watch": "tsc -w",
     "publish": "npm run build && s cli platform publish",
     "build": "tsc",
     "postbuild": "npm run doc",
