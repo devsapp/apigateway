@@ -67,6 +67,8 @@ export default class ComponentDemo extends BaseComponent {
     try {
       return await this.invokeApi('CreateApi', client, params);
     } catch (e) {
+    console.log(e);
+    console.log(params);
       const api = await this.QueryApiByName(client, { ApiName: params.ApiName, GroupId: params.GroupId });
       const [singleApi = {}] = _.get(api, 'ApiSummarys.ApiSummary', []);
       let apiId = singleApi.ApiId
@@ -212,7 +214,7 @@ export default class ComponentDemo extends BaseComponent {
           }
           setTimeout(() => {
             console.log(`${api.apiName} is successed deployed`);
-            resolve('');
+            resolve(api.apiName);
           },500);
         } catch (e) {
           reject(e);
@@ -221,13 +223,14 @@ export default class ComponentDemo extends BaseComponent {
 
     });
 
-    await Promise.all(promiseData);
+    const apiNameList = await Promise.all(promiseData);
+    
     this.__report({
       name: 'apigateway',
       access: _.get(inputs, 'project.access'),
       content: {
         groupName,
-        apis,
+        apis: apiNameList,
         domain: customerDomain || SubDomain
       }
     })
