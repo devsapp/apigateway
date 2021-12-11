@@ -1,8 +1,8 @@
 import Core from '@alicloud/pop-core';
 import _ from 'loadsh';
-import BaseComponent from './common/base';
-import logger from './common/logger';
-import { InputProps, BASIC_API_INPUTS } from './common/entity';
+import BaseComponent from './base';
+import logger from './logger';
+import { InputProps, BASIC_API_INPUTS } from './entity';
 
 export default class ComponentDemo extends BaseComponent {
 

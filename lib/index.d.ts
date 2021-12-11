@@ -1,5 +1,5 @@
-import BaseComponent from './common/base';
-import { InputProps } from './common/entity';
+import BaseComponent from './base';
+import { InputProps } from './entity';
 export default class ComponentDemo extends BaseComponent {
     client: any;
     region: any;

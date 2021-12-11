@@ -22,12 +22,12 @@ export default class BaseComponent {
         if (this.basePath) {
             return this.basePath;
         }
-        const baseName = path.basename(__dirname);
-        if (baseName !== 'lib') {
-            this.basePath = path.join(__dirname, '..');
-        } else {
+        // const baseName = path.basename(__dirname);
+        // if (baseName !== 'lib') {
+        //     this.basePath = path.join(__dirname, '..');
+        // } else {
             this.basePath = __dirname;
-        }
+        // }
         return this.basePath;
     }
 
