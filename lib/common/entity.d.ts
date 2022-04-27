@@ -116,6 +116,8 @@ export declare const BASIC_API_INPUTS: {
         serviceAddress: string;
         serviceTimeout: number;
         servicePath: string;
+        contentTypeValue: string;
+        contentTypeCatagory: string;
         mock: string;
         mockResult: string;
         ossConfig: {

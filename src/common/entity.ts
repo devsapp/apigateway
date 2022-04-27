@@ -125,6 +125,8 @@ export interface ICredentials {
       serviceAddress: "",
       serviceTimeout: 10000,
       servicePath: '/',
+      contentTypeValue: "",
+      contentTypeCatagory: "CLIENT",
       mock: 'FALSE',
       mockResult: '',
       ossConfig: {

@@ -4,6 +4,7 @@ import BaseComponent from './common/base';
 import logger from './common/logger';
 import { InputProps, BASIC_API_INPUTS } from './common/entity';
 
+const SHARED_API_INSTANCE = 'api-shared-vpc-001';
 export default class ComponentDemo extends BaseComponent {
 
   public client;
@@ -65,10 +66,10 @@ export default class ComponentDemo extends BaseComponent {
    */
   async createOrUpdateApi(client, params) {
     try {
+      logger.info('the params is:' + JSON.stringify(params, null, 2));
       return await this.invokeApi('CreateApi', client, params);
     } catch (e) {
-    console.log(e);
-    console.log(params);
+      logger.info(e);
       const api = await this.QueryApiByName(client, { ApiName: params.ApiName, GroupId: params.GroupId });
       const [singleApi = {}] = _.get(api, 'ApiSummarys.ApiSummary', []);
       let apiId = singleApi.ApiId
@@ -132,7 +133,7 @@ export default class ComponentDemo extends BaseComponent {
     const { GroupId, SubDomain } = await this.getGroupId(client, { groupName, regionId, basePath, description, instanceId });
     if (GroupId) {
       try {
-        await this.modifyGroup(client, { PassthroughHeaders: 'host', GroupId });
+        await this.modifyGroup(client, { PassthroughHeaders: '', GroupId });
       } catch (e) {
       }
     }
@@ -160,7 +161,7 @@ export default class ComponentDemo extends BaseComponent {
   public async bindDomain(inputs: InputProps) {
     const { credentials } = inputs;
 
-    let { groupName, stageName = 'RELEASE', regionId, basePath = '/', description = '', instanceId = 'api-shared-vpc-001', customerDomain } = inputs.props;
+    let { groupName, stageName = 'RELEASE', regionId, basePath = '/', description = '', instanceId = SHARED_API_INSTANCE, customerDomain } = inputs.props;
     let client = this.getClient(credentials, regionId);
     let { GroupId } = await this.executeGroup(client, { groupName, regionId, basePath, description, instanceId });
 
@@ -180,11 +181,10 @@ export default class ComponentDemo extends BaseComponent {
   * @returns
   */
   public async deploy(inputs: InputProps) {
-    logger.info('deploy test');
     const { credentials } = inputs;
     const { AccountID } = credentials;
     const apiArn = `acs:ram::${AccountID}:role/aliyunserviceroleforapigateway`;
-    let { apis, groupName, stageName = 'RELEASE', regionId, basePath = '/', description = '', instanceId = 'api-shared-vpc-001', customerDomain } = inputs.props;
+    let { apis, groupName, stageName = 'RELEASE', regionId, basePath = '/', description = '', instanceId = SHARED_API_INSTANCE, customerDomain } = inputs.props;
     const promiseData = [];
     let client = this.getClient(credentials, regionId);
     let { GroupId, SubDomain } = await this.executeGroup(client, { groupName, regionId, basePath, description, instanceId });
@@ -215,7 +215,7 @@ export default class ComponentDemo extends BaseComponent {
           setTimeout(() => {
             console.log(`${api.apiName} is successed deployed`);
             resolve(api.apiName);
-          },500);
+          }, 500);
         } catch (e) {
           reject(e);
         }
@@ -224,7 +224,7 @@ export default class ComponentDemo extends BaseComponent {
     });
 
     const apiNameList = await Promise.all(promiseData);
-    
+
     this.__report({
       name: 'apigateway',
       access: _.get(inputs, 'project.access'),
