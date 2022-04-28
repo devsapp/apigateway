@@ -8,6 +8,8 @@ export default class ComponentDemo extends BaseComponent {
     private getClient;
     private invokeApi;
     searchGroupByName(client: any, GroupName: any): Promise<any>;
+    tryExecuteFunction(fc: any, currentRetryTime?: number, waittime?: number, retryError?: string): Promise<void>;
+    reCreateOrUpdateApi(client: any, params: any): Promise<any>;
     /**
      * 创建api
      */

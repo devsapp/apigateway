@@ -5,6 +5,7 @@ import logger from './common/logger';
 import { InputProps, BASIC_API_INPUTS } from './common/entity';
 
 const SHARED_API_INSTANCE = 'api-shared-vpc-001';
+const API_SERVICE_ADDRESS_ERROR = 'InvalidApiServiceAddressError';
 export default class ComponentDemo extends BaseComponent {
 
   public client;
@@ -60,16 +61,45 @@ export default class ComponentDemo extends BaseComponent {
     return await this.invokeApi('DescribeApiGroups', client, { GroupName })
   }
 
+  async tryExecuteFunction(fc, currentRetryTime = 1, waittime = 5, retryError = API_SERVICE_ADDRESS_ERROR) {
+    logger.info('The current number of retries is ' + currentRetryTime)
+    const retryTime = 5;
+    const waitFun: any = () => {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve('');
+        }, waittime * 1000)
+      });
+    }
+    await waitFun();
+    try {
+      await fc();
+    } catch (e) {
+      if (e.name.indexOf(retryError) !== -1 && currentRetryTime < retryTime) {
+        await this.tryExecuteFunction(fc, ++currentRetryTime, waittime, retryError);
+      }
+    }
+  }
 
+  async reCreateOrUpdateApi(client, params) {
+    return await this.invokeApi('CreateApi', client, params);
+  }
   /**
    * 创建api
    */
   async createOrUpdateApi(client, params) {
     try {
-      logger.info('the params is:' + JSON.stringify(params, null, 2));
       return await this.invokeApi('CreateApi', client, params);
     } catch (e) {
-      logger.info(e);
+      
+      if (e.name.indexOf(API_SERVICE_ADDRESS_ERROR) !== -1) { //遇到绑定后端服务的地址错误，进行重试
+        console.log('params is', JSON.stringify(params,null,4));
+        console.log('Error tag:', e.name);
+        logger.info('start retry');
+        await this.tryExecuteFunction(async () => {
+          await this.reCreateOrUpdateApi(client, params);
+        });
+      }
       const api = await this.QueryApiByName(client, { ApiName: params.ApiName, GroupId: params.GroupId });
       const [singleApi = {}] = _.get(api, 'ApiSummarys.ApiSummary', []);
       let apiId = singleApi.ApiId
@@ -213,7 +243,12 @@ export default class ComponentDemo extends BaseComponent {
             await this.publishApi(client, { StageName, ApiId: data.ApiId, Description, GroupId })
           }
           setTimeout(() => {
-            console.log(`${api.apiName} is successed deployed`);
+            if (data.ApiId) {
+              console.log(`${api.apiName} is successed deployed`);
+            } else {
+              console.log(`${api.apiName} is failed to deployed`);
+            }
+
             resolve(api.apiName);
           }, 500);
         } catch (e) {
