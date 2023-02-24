@@ -1,84 +1,49 @@
 edition: 1.0.0 #  命令行YAML规范版本，遵循语义化版本（Semantic Versioning）规范
 name: component-test #  项目名称
+access: simplemvc
 vars: # [全局变量，提供给各个服务使用]
-  logo: https://image.aliyun.com/xxxx.png
-  domain: 
   region: cn-hongkong
-  indexFile: index.html
-  fc:
-    baseUrl: 
-  oss:
-    baseUrl:
-    bucketName: serverlesshub
+  groupName: test
 services:
-  # www: # 静态资源
-  #   component: oss
-  #   props:
-  #     domain: ${vars.domain}
-  #     region: ${vars.region}
-  #     bucketName: ${vars.oss.bucketName}
-  #     object: ${vars.oss.object}
-  # serverles-api: #动态api
-  #   component: ""
-  #   props:
   gateway: #  服务名称
     component: ../lib # 这里引入的是相对路径，正式配置替换成你自己的component名称即可
     props:
-      regionId: ${vars.region}
-      customerDomain: ${vars.domain} # 客户自定义域名
-      groupName: release_hub #指定分组 这里你可以分开设置环境
-      stageName: RELEASE  
       apis:
-        - apiName: hub_serverless # serverless api
+        - apiName: test
           regionId: ${vars.region}
           requestConfig:
-            requestPath: /api/*
-            requestHttpMethod: GET
+            requestHttpMethod: PATCH
+            requestMode: PASSTHROUGH
+            requestPath: /v1/accounts/[id]/costdata
+            requestProtocol: HTTPS
+          requestParameters:
+              - apiParameterName: id
+                location: PATH
+                parameterType: String
+                required: REQUIRED
+                defaultValue: dddddd
+                description: ddddddddd
+          serviceParameters:
+              - serviceParameterName: id
+                location: PATH
+                type: String
+                parameterCatalog: REQUEST
+          serviceParametersMap:
+              - serviceParameterName: id
+                requestParameterName: id
           serviceConfig:
-            servicePath: / # 后端路径
+            functionComputeConfig:
+              fcRegionId: ${vars.region}
+              fcType: FCEvent
+              functionName: auto
+              serviceName: test
+            resultType: JSON
+            servicePath: /
             serviceProtocol: FunctionCompute
-            functionComputeConfig: # 函数计算的配置
-              fcRegionId: ${vars.region} # 函数计算region
-              fcBaseUrl: ${vars.fc.baseUrl}
-              path: /
-            resultType: JSON
-        - apiName: hub_serverless # serverless api
-          regionId: ${vars.region}
-          requestConfig:
-            requestPath: /api/*
-            requestHttpMethod: POST
-          serviceConfig:
-            servicePath: / # 后端路径
-            serviceProtocol: FunctionCompute
-            functionComputeConfig: # 函数计算的配置
-              fcRegionId: ${vars.region} # 函数计算region
-              fcBaseUrl: ${vars.fc.baseUrl}
-              path: /
-            resultType: JSON
-        - apiName: hub_serverless_assets # serverless api
-          regionId: ${vars.region}
-          requestConfig:
-            requestPath: /*
-            requestHttpMethod: GET
-          serviceConfig:
-            serviceAddress: ${vars.oss.baseUrl}
-            aoneAppName: cloudapi-openapi
-            servicePath: /template/* # 后端路径
-            serviceHttpMethod: ANY
-            serviceProtocol: HTTP
-            resultType: JSON
-        - apiName: hub_serverless_assets_index # serverless api
-          regionId: ${vars.region}
-          requestConfig:
-            requestPath: /
-            requestHttpMethod: GET
-          serviceConfig:
-            serviceAddress: ${vars.oss.baseUrl}
-            aoneAppName: cloudapi-openapi
-            servicePath: /template/index.html # 后端路径
-            serviceHttpMethod: GET
-            serviceProtocol: HTTP
-            resultType: JSON
+            serviceTimeout: 30000
+      groupName: ${vars.groupName}
+      regionId: ${vars.region}
+      stageName: RELEASE
         
   # dns: # 网站解析
   #   componnet: dns

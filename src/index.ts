@@ -91,9 +91,8 @@ export default class ComponentDemo extends BaseComponent {
     try {
       return await this.invokeApi('CreateApi', client, params);
     } catch (e) {
-      
       if (e.name.indexOf(API_SERVICE_ADDRESS_ERROR) !== -1) { //遇到绑定后端服务的地址错误，进行重试
-        console.log('params is', JSON.stringify(params,null,4));
+        console.log('params is', JSON.stringify(params, null, 4));
         console.log('Error tag:', e.name);
         logger.info('start retry');
         await this.tryExecuteFunction(async () => {
@@ -118,7 +117,7 @@ export default class ComponentDemo extends BaseComponent {
         }
 
       }
-      return { ApiId: apiId };
+      return { ApiId: apiId, error: e };
     }
 
   }
@@ -236,6 +235,9 @@ export default class ComponentDemo extends BaseComponent {
           let transformedData: any = this.titleCase(newData);
           transformedData.RequestConfig = JSON.stringify(transformedData.RequestConfig);
           transformedData.ServiceConfig = JSON.stringify(transformedData.ServiceConfig);
+          transformedData.RequestParameters = JSON.stringify(transformedData.RequestParameters);
+          transformedData.ServiceParametersMap = JSON.stringify(transformedData.ServiceParametersMap);
+          transformedData.ServiceParameters = JSON.stringify(transformedData.ServiceParameters);
           const data = await this.createOrUpdateApi(client, transformedData);
           if (data.ApiId) {
             let { StageName, Description, GroupId } = transformedData;
@@ -247,6 +249,7 @@ export default class ComponentDemo extends BaseComponent {
               console.log(`${api.apiName} is successed deployed`);
             } else {
               console.log(`${api.apiName} is failed to deployed`);
+              throw data.error;
             }
 
             resolve(api.apiName);

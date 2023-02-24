@@ -1,6 +1,6 @@
 {
   "name": "apigateway",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "This is a component for alibaba cloud apigateway",
   "keywords": [
     "Serverless",

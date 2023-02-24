@@ -71,6 +71,16 @@ export interface RequestParameter {
     DocOrder: string;
     Description: string;
 }
+export interface ServiceParameter {
+    ServiceParameterName: string;
+    Location: string;
+    ParameterType: string;
+    ParameterCatalog: string;
+}
+export interface ServiceParameterMap {
+    ServiceParameterName: string;
+    RequestParameterName: string;
+}
 export interface ApiInputProps {
     GroupId: string;
     ApiName: string;
@@ -79,11 +89,11 @@ export interface ApiInputProps {
     AuthType?: string;
     RequestConfig: RequestConfig;
     ServiceConfig: ServiceConfig;
-    RequestParameters?: RequestParameter;
+    RequestParameters?: RequestParameter[];
     SystemParameters?: string;
     ConstantParameters?: string;
-    ServiceParameters?: string;
-    ServiceParametersMap: string;
+    ServiceParameters?: ServiceParameter[];
+    ServiceParametersMap: ServiceParameterMap[];
     ResultType: string;
     ResultSample: string;
     FailResultSample: string;

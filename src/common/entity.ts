@@ -77,6 +77,16 @@ export interface ICredentials {
     Description: string // 参数描述
   }
   
+  export interface ServiceParameter {
+    ServiceParameterName: string,
+    Location: string, // BODY、HEAD、QUERY、PATH
+    ParameterType: string, // STRING、NUMBER、BOOLEAN分别表示字符、数值、布尔
+    ParameterCatalog: string // 请求参数的类型，取值为：REQUEST、CONSTANT、SYSTEM，分别表示普通请求参数，常量参数和系统参数。其中REQUEST是需要API调用者传值，CONSTANT、SYSTEM两种类型对API调用者不可见
+  }
+  export interface ServiceParameterMap {
+    ServiceParameterName: string,
+    RequestParameterName: string
+  }
   export interface ApiInputProps {
     GroupId: string,
     ApiName: string,
@@ -85,11 +95,11 @@ export interface ICredentials {
     AuthType?:string,
     RequestConfig: RequestConfig, // Consumer向网关发送API请求的相关配置项。
     ServiceConfig: ServiceConfig,  // 网关向后端服务发送API请求的相关配置项。
-    RequestParameters?: RequestParameter, // Consumer向网关发送API请求的参数描述。
+    RequestParameters?: RequestParameter[], // Consumer向网关发送API请求的参数描述。
     SystemParameters?: string,  // 参数取值来源 API：
     ConstantParameters?:string, // 参数取值来源 API：
-    ServiceParameters?:string, // 网关向后端服务发送API请求的参数描述。
-    ServiceParametersMap: string, // Consumer向网关发送请求的参数和网关向后端服务发送的请求的参数的映射关系。
+    ServiceParameters?: ServiceParameter[], // 网关向后端服务发送API请求的参数描述。
+    ServiceParametersMap: ServiceParameterMap[], // Consumer向网关发送请求的参数和网关向后端服务发送的请求的参数的映射关系。
     ResultType: string,  // 后端服务返回应答的格式，目前可以设置为：JSON、TEXT、BINARY、XML、HTML。默认为JSON。
     ResultSample: string, // 后端服务返回应答的示例
     FailResultSample: string, // 后端服务失败返回应答的示例
