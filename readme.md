@@ -31,7 +31,7 @@ services:
           requestConfig:
             requestHttpMethod: PATCH
             requestMode: PASSTHROUGH
-            requestPath: /v1/accounts/[id]/costdata
+            requestPath: /v1/xxx/[id]/xxx
             requestProtocol: HTTPS
           requestParameters:
               - apiParameterName: id
