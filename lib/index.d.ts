@@ -1,5 +1,13 @@
 import BaseComponent from './common/base';
 import { InputProps } from './common/entity';
+interface ExecuteApiResult {
+    type: 'create' | 'updateNeedlessAbolish' | 'updateNeedAbolish';
+    name: string;
+    id?: string;
+    modifySuccess: boolean;
+    publishSuccess?: boolean;
+    error?: any;
+}
 export default class ComponentDemo extends BaseComponent {
     client: any;
     region: any;
@@ -13,7 +21,7 @@ export default class ComponentDemo extends BaseComponent {
     /**
      * 创建api
      */
-    createOrUpdateApi(client: any, params: any): Promise<any>;
+    createOrUpdateApi(client: any, params: any): Promise<ExecuteApiResult>;
     QueryApiByName(client: any, { ApiName, GroupId }: {
         ApiName: any;
         GroupId: any;
@@ -40,5 +48,11 @@ export default class ComponentDemo extends BaseComponent {
     */
     deploy(inputs: InputProps): Promise<{
         domain: any;
+        apiResult: any[];
+        totalApiNumber: any;
+        successApiNumber: number;
+        failedApiNumber: number;
+        failedApiNames: any[];
     }>;
 }
+export {};

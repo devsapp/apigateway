@@ -6,6 +6,15 @@ import { InputProps, BASIC_API_INPUTS } from './common/entity';
 
 const SHARED_API_INSTANCE = 'api-shared-vpc-001';
 const API_SERVICE_ADDRESS_ERROR = 'InvalidApiServiceAddressError';
+
+interface ExecuteApiResult {
+  type: 'create' | 'updateNeedlessAbolish' | 'updateNeedAbolish',
+  name: string,
+  id?: string,
+  modifySuccess: boolean,
+  publishSuccess?: boolean,
+  error?: any
+}
 export default class ComponentDemo extends BaseComponent {
 
   public client;
@@ -87,17 +96,32 @@ export default class ComponentDemo extends BaseComponent {
   /**
    * 创建api
    */
-  async createOrUpdateApi(client, params) {
+  async createOrUpdateApi(client, params): Promise<ExecuteApiResult> {
+    const name = params.ApiName;
     try {
-      return await this.invokeApi('CreateApi', client, params);
+      const result = await this.invokeApi('CreateApi', client, params);
+      return {
+        name,
+        type: 'create',
+        modifySuccess: true,
+        id: _.get(result, 'ApiId', '')
+      };
     } catch (e) {
-      if (e.name.indexOf(API_SERVICE_ADDRESS_ERROR) !== -1) { //遇到绑定后端服务的地址错误，进行重试
-        console.log('params is', JSON.stringify(params, null, 4));
-        console.log('Error tag:', e.name);
-        logger.info('start retry');
-        await this.tryExecuteFunction(async () => {
-          await this.reCreateOrUpdateApi(client, params);
-        });
+      const errorName = e.name || '';
+      if (errorName.indexOf(API_SERVICE_ADDRESS_ERROR) !== -1) { //遇到绑定后端服务的地址错误，进行重试
+        // console.log('params is', JSON.stringify(params, null, 4));
+        // console.log('Error tag:', e.name);
+        // logger.info('start retry');
+        // await this.tryExecuteFunction(async () => {
+        //   await this.reCreateOrUpdateApi(client, params);
+        // });
+        return {
+          name,
+          type: 'create',
+          modifySuccess: false,
+          error: e,
+          id: ''
+        };
       }
       const api = await this.QueryApiByName(client, { ApiName: params.ApiName, GroupId: params.GroupId });
       const [singleApi = {}] = _.get(api, 'ApiSummarys.ApiSummary', []);
@@ -109,15 +133,47 @@ export default class ComponentDemo extends BaseComponent {
         params.ApiId = apiId;
         try {
           await this.invokeApi('ModifyApi', client, params);
+          return {
+            name,
+            type: 'updateNeedlessAbolish',
+            modifySuccess: true,
+            id: apiId
+          };
         } catch (e) {
           // 限制线上环境的自由变更
-          const { GroupId, ApiId, StageName = 'RELEASE' } = params;
-          await this.invokeApi('AbolishApi', client, { GroupId, ApiId, StageName }); // 下线
-          await this.invokeApi('ModifyApi', client, params); // 再更新
+          try {
+            const { GroupId, ApiId, StageName = 'RELEASE' } = params;
+            await this.invokeApi('AbolishApi', client, { GroupId, ApiId, StageName }); // 下线
+
+            await this.invokeApi('ModifyApi', client, params); // 再更新
+            return {
+              name: '',
+              type: 'updateNeedAbolish',
+              modifySuccess: true,
+              id: ''
+            };
+          } catch (e) {
+            return {
+              name,
+              type: 'updateNeedAbolish',
+              modifySuccess: false,
+              id: apiId,
+              error: e
+            };
+          }
+
         }
 
+      } else {
+        return {
+          name,
+          type: 'create',
+          modifySuccess: false,
+          error: e,
+          id: ''
+        };
       }
-      return { ApiId: apiId, error: e };
+
     }
 
   }
@@ -214,65 +270,62 @@ export default class ComponentDemo extends BaseComponent {
     const { AccountID } = credentials;
     const apiArn = `acs:ram::${AccountID}:role/aliyunserviceroleforapigateway`;
     let { apis, groupName, stageName = 'RELEASE', regionId, basePath = '/', description = '', instanceId = SHARED_API_INSTANCE, customerDomain } = inputs.props;
-    const promiseData = [];
+
     let client = this.getClient(credentials, regionId);
     let { GroupId, SubDomain } = await this.executeGroup(client, { groupName, regionId, basePath, description, instanceId });
-    apis.forEach((api) => {
-      promiseData.push(new Promise(async (resolve, reject) => {
-        try {
-          const clonedApiData = _.cloneDeepWith(BASIC_API_INPUTS);
-          groupName = api.groupName || groupName; // 可以在api单独指定groupName;
-          instanceId = api.instanceId || instanceId; //可以在api单独指定instanceId;
-          regionId = api.regionId || regionId;
-          if (this.region! == regionId) { //  当自定义的api 与全局不同的时候重新处理
-            client = this.getClient(credentials, regionId);
-            let groupData = await this.executeGroup(client, { groupName, regionId, basePath, description, instanceId });
-            GroupId = groupData.GroupId;
-            SubDomain = groupData.SubDomain;
-          }
-          const newData = _.merge({}, clonedApiData, api, { GroupId });
-          newData.serviceConfig.functionComputeConfig.roleArn = apiArn;
-          let transformedData: any = this.titleCase(newData);
-          transformedData.RequestConfig = JSON.stringify(transformedData.RequestConfig);
-          transformedData.ServiceConfig = JSON.stringify(transformedData.ServiceConfig);
-          transformedData.RequestParameters = JSON.stringify(transformedData.RequestParameters);
-          transformedData.ServiceParametersMap = JSON.stringify(transformedData.ServiceParametersMap);
-          transformedData.ServiceParameters = JSON.stringify(transformedData.ServiceParameters);
-          const data = await this.createOrUpdateApi(client, transformedData);
-          if (data.ApiId) {
-            let { StageName, Description, GroupId } = transformedData;
-            StageName = StageName || stageName;
-            await this.publishApi(client, { StageName, ApiId: data.ApiId, Description, GroupId })
-          }
-          setTimeout(() => {
-            if (data.ApiId) {
-              console.log(`${api.apiName} is successed deployed`);
-            } else {
-              console.log(`${api.apiName} is failed to deployed`);
-              throw data.error;
-            }
-
-            resolve(api.apiName);
-          }, 500);
-        } catch (e) {
-          reject(e);
-        }
-      }))
-
-    });
-
-    const apiNameList = await Promise.all(promiseData);
-
-    this.__report({
-      name: 'apigateway',
-      access: _.get(inputs, 'project.access'),
-      content: {
-        groupName,
-        apis: apiNameList,
-        domain: customerDomain || SubDomain
+    let successApiNumber = 0;
+    let failedApiNumber = 0;
+    const failedApiNames = [];
+    const doCreateApi = async (api) => {
+      const clonedApiData = _.cloneDeepWith(BASIC_API_INPUTS);
+      groupName = api.groupName || groupName; // 可以在api单独指定groupName;
+      instanceId = api.instanceId || instanceId; //可以在api单独指定instanceId;
+      regionId = api.regionId || regionId;
+      if (this.region! == regionId) { //  当自定义的api 与全局不同的时候重新处理
+        client = this.getClient(credentials, regionId);
+        const groupData = await this.executeGroup(client, { groupName, regionId, basePath, description, instanceId });
+        GroupId = groupData.GroupId;
+        SubDomain = groupData.SubDomain;
       }
-    })
-    return { domain: SubDomain };
+      const newData = _.merge({}, clonedApiData, api, { GroupId });
+      newData.serviceConfig.functionComputeConfig.roleArn = apiArn;
+      const transformedData: any = this.titleCase(newData);
+      transformedData.RequestConfig = JSON.stringify(transformedData.RequestConfig);
+      transformedData.ServiceConfig = JSON.stringify(transformedData.ServiceConfig);
+      transformedData.RequestParameters = JSON.stringify(transformedData.RequestParameters);
+      transformedData.ServiceParametersMap = JSON.stringify(transformedData.ServiceParametersMap);
+      transformedData.ServiceParameters = JSON.stringify(transformedData.ServiceParameters);
+      const data = await this.createOrUpdateApi(client, transformedData);
+      let publishResult: any = {};
+      if (data.modifySuccess) {
+        let { StageName, Description, GroupId } = transformedData;
+        StageName = StageName || stageName;
+        try {
+          publishResult = await this.publishApi(client, { StageName, ApiId: data.id, Description, GroupId });
+          data.publishSuccess = true;
+          successApiNumber++;
+        } catch (e) {
+          data.error = e
+          data.publishSuccess = false;
+          failedApiNumber++;
+          failedApiNames.push(data.name);
+        }
+
+      } else {
+        failedApiNames.push(data.name);
+        failedApiNumber++;
+      }
+
+      return { ...data, requestId: publishResult.RequestId || '' };
+    }
+    const totalApiNumber = apis.length;
+    const executedApiResult = [];
+    for (const api of apis) {
+      const result = await doCreateApi(api);
+      executedApiResult.push(result);
+    }
+
+    return { domain: SubDomain, apiResult: executedApiResult, totalApiNumber, successApiNumber, failedApiNumber, failedApiNames };
   }
 
 }

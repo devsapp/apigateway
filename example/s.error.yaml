@@ -173,38 +173,6 @@ services:
             servicePath: /
             serviceProtocol: FunctionCompute
             serviceTimeout: 30000
-        - apiName: test6
-          regionId: ${vars.region}
-          requestConfig:
-            requestHttpMethod: PATCH
-            requestMode: PASSTHROUGH
-            requestPath: /v1/accounts/[id]/costdata5
-            requestProtocol: HTTPS
-          requestParameters:
-              - apiParameterName: id
-                location: PATH
-                parameterType: String
-                required: REQUIRED
-                defaultValue: 
-                description: 
-          serviceParameters:
-              - serviceParameterName: id
-                location: PATH
-                type: String
-                parameterCatalog: REQUEST
-          serviceParametersMap:
-              - serviceParameterName: id
-                requestParameterName: id
-          serviceConfig:
-            functionComputeConfig:
-              fcRegionId: ${vars.region}
-              fcType: FCEvent
-              functionName: auto
-              serviceName: test
-            resultType: JSON
-            servicePath: /
-            serviceProtocol: FunctionCompute
-            serviceTimeout: 30000
   # dns: # 网站解析
   #   componnet: dns
   #   props:
