@@ -66,7 +66,7 @@
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 10,
+							"line": 20,
 							"character": 15
 						}
 					],
@@ -80,7 +80,7 @@
 					}
 				},
 				{
-					"id": 63,
+					"id": 78,
 					"name": "inputs",
 					"kind": 1024,
 					"kindString": "Property",
@@ -107,7 +107,7 @@
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 11,
+							"line": 21,
 							"character": 15
 						}
 					],
@@ -117,7 +117,7 @@
 					}
 				},
 				{
-					"id": 28,
+					"id": 38,
 					"name": "QueryApiByName",
 					"kind": 2048,
 					"kindString": "Method",
@@ -125,20 +125,20 @@
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 96,
+							"line": 185,
 							"character": 22
 						}
 					],
 					"signatures": [
 						{
-							"id": 29,
+							"id": 39,
 							"name": "QueryApiByName",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 30,
+									"id": 40,
 									"name": "client",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -149,7 +149,7 @@
 									}
 								},
 								{
-									"id": 31,
+									"id": 41,
 									"name": "__namedParameters",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -174,7 +174,7 @@
 					]
 				},
 				{
-					"id": 66,
+					"id": 81,
 					"name": "__doc",
 					"kind": 2048,
 					"kindString": "Method",
@@ -188,14 +188,14 @@
 					],
 					"signatures": [
 						{
-							"id": 67,
+							"id": 82,
 							"name": "__doc",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 68,
+									"id": 83,
 									"name": "projectName",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -224,7 +224,7 @@
 					}
 				},
 				{
-					"id": 64,
+					"id": 79,
 					"name": "__getBasePath",
 					"kind": 2048,
 					"kindString": "Method",
@@ -238,7 +238,7 @@
 					],
 					"signatures": [
 						{
-							"id": 65,
+							"id": 80,
 							"name": "__getBasePath",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -259,7 +259,7 @@
 					}
 				},
 				{
-					"id": 69,
+					"id": 84,
 					"name": "__report",
 					"kind": 2048,
 					"kindString": "Method",
@@ -275,14 +275,14 @@
 					],
 					"signatures": [
 						{
-							"id": 70,
+							"id": 85,
 							"name": "__report",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 71,
+									"id": 86,
 									"name": "reportData",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -309,7 +309,7 @@
 					}
 				},
 				{
-					"id": 55,
+					"id": 65,
 					"name": "bindDomain",
 					"kind": 2048,
 					"kindString": "Method",
@@ -319,13 +319,13 @@
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 161,
+							"line": 250,
 							"character": 25
 						}
 					],
 					"signatures": [
 						{
-							"id": 56,
+							"id": 66,
 							"name": "bindDomain",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -335,7 +335,7 @@
 							},
 							"parameters": [
 								{
-									"id": 57,
+									"id": 67,
 									"name": "inputs",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -363,7 +363,7 @@
 					]
 				},
 				{
-					"id": 24,
+					"id": 34,
 					"name": "createOrUpdateApi",
 					"kind": 2048,
 					"kindString": "Method",
@@ -371,13 +371,13 @@
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 67,
+							"line": 103,
 							"character": 25
 						}
 					],
 					"signatures": [
 						{
-							"id": 25,
+							"id": 35,
 							"name": "createOrUpdateApi",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -387,7 +387,7 @@
 							},
 							"parameters": [
 								{
-									"id": 26,
+									"id": 36,
 									"name": "client",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -398,7 +398,7 @@
 									}
 								},
 								{
-									"id": 27,
+									"id": 37,
 									"name": "params",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -413,8 +413,8 @@
 								"type": "reference",
 								"typeArguments": [
 									{
-										"type": "intrinsic",
-										"name": "any"
+										"type": "reference",
+										"name": "ExecuteApiResult"
 									}
 								],
 								"name": "Promise"
@@ -423,7 +423,7 @@
 					]
 				},
 				{
-					"id": 58,
+					"id": 68,
 					"name": "deploy",
 					"kind": 2048,
 					"kindString": "Method",
@@ -433,13 +433,13 @@
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 183,
+							"line": 272,
 							"character": 21
 						}
 					],
 					"signatures": [
 						{
-							"id": 59,
+							"id": 69,
 							"name": "deploy",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -450,7 +450,7 @@
 							},
 							"parameters": [
 								{
-									"id": 60,
+									"id": 70,
 									"name": "inputs",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -468,14 +468,29 @@
 									{
 										"type": "reflection",
 										"declaration": {
-											"id": 61,
+											"id": 71,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"children": [
 												{
-													"id": 62,
+													"id": 73,
+													"name": "apiResult",
+													"kind": 1024,
+													"kindString": "Property",
+													"flags": {},
+													"type": {
+														"type": "array",
+														"elementType": {
+															"type": "intrinsic",
+															"name": "any"
+														}
+													},
+													"defaultValue": "..."
+												},
+												{
+													"id": 72,
 													"name": "domain",
 													"kind": 1024,
 													"kindString": "Property",
@@ -485,6 +500,53 @@
 														"name": "any"
 													},
 													"defaultValue": "..."
+												},
+												{
+													"id": 77,
+													"name": "failedApiNames",
+													"kind": 1024,
+													"kindString": "Property",
+													"flags": {},
+													"type": {
+														"type": "array",
+														"elementType": {
+															"type": "intrinsic",
+															"name": "any"
+														}
+													}
+												},
+												{
+													"id": 76,
+													"name": "failedApiNumber",
+													"kind": 1024,
+													"kindString": "Property",
+													"flags": {},
+													"type": {
+														"type": "intrinsic",
+														"name": "number"
+													}
+												},
+												{
+													"id": 75,
+													"name": "successApiNumber",
+													"kind": 1024,
+													"kindString": "Property",
+													"flags": {},
+													"type": {
+														"type": "intrinsic",
+														"name": "number"
+													}
+												},
+												{
+													"id": 74,
+													"name": "totalApiNumber",
+													"kind": 1024,
+													"kindString": "Property",
+													"flags": {},
+													"type": {
+														"type": "intrinsic",
+														"name": "any"
+													}
 												}
 											],
 											"groups": [
@@ -492,7 +554,12 @@
 													"title": "Properties",
 													"kind": 1024,
 													"children": [
-														62
+														73,
+														72,
+														77,
+														76,
+														75,
+														74
 													]
 												}
 											]
@@ -505,7 +572,7 @@
 					]
 				},
 				{
-					"id": 44,
+					"id": 54,
 					"name": "executeGroup",
 					"kind": 2048,
 					"kindString": "Method",
@@ -515,20 +582,20 @@
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 132,
+							"line": 221,
 							"character": 28
 						}
 					],
 					"signatures": [
 						{
-							"id": 45,
+							"id": 55,
 							"name": "executeGroup",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 46,
+									"id": 56,
 									"name": "client",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -539,7 +606,7 @@
 									}
 								},
 								{
-									"id": 47,
+									"id": 57,
 									"name": "__namedParameters",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -556,14 +623,14 @@
 									{
 										"type": "reflection",
 										"declaration": {
-											"id": 48,
+											"id": 58,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"children": [
 												{
-													"id": 49,
+													"id": 59,
 													"name": "GroupId",
 													"kind": 1024,
 													"kindString": "Property",
@@ -574,7 +641,7 @@
 													}
 												},
 												{
-													"id": 50,
+													"id": 60,
 													"name": "SubDomain",
 													"kind": 1024,
 													"kindString": "Property",
@@ -590,8 +657,8 @@
 													"title": "Properties",
 													"kind": 1024,
 													"children": [
-														49,
-														50
+														59,
+														60
 													]
 												}
 											]
@@ -614,7 +681,7 @@
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 37,
+							"line": 47,
 							"character": 19
 						}
 					],
@@ -657,7 +724,7 @@
 					]
 				},
 				{
-					"id": 32,
+					"id": 42,
 					"name": "getGroupId",
 					"kind": 2048,
 					"kindString": "Method",
@@ -667,13 +734,13 @@
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 106,
+							"line": 195,
 							"character": 26
 						}
 					],
 					"signatures": [
 						{
-							"id": 33,
+							"id": 43,
 							"name": "getGroupId",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -681,7 +748,7 @@
 							"comment": {},
 							"parameters": [
 								{
-									"id": 34,
+									"id": 44,
 									"name": "client",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -695,7 +762,7 @@
 									}
 								},
 								{
-									"id": 35,
+									"id": 45,
 									"name": "params",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -733,7 +800,7 @@
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 50,
+							"line": 64,
 							"character": 25
 						}
 					],
@@ -793,7 +860,7 @@
 					]
 				},
 				{
-					"id": 36,
+					"id": 46,
 					"name": "modifyGroup",
 					"kind": 2048,
 					"kindString": "Method",
@@ -803,20 +870,20 @@
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 124,
+							"line": 213,
 							"character": 27
 						}
 					],
 					"signatures": [
 						{
-							"id": 37,
+							"id": 47,
 							"name": "modifyGroup",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 38,
+									"id": 48,
 									"name": "client",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -827,7 +894,7 @@
 									}
 								},
 								{
-									"id": 39,
+									"id": 49,
 									"name": "params",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -852,7 +919,7 @@
 					]
 				},
 				{
-					"id": 40,
+					"id": 50,
 					"name": "publishApi",
 					"kind": 2048,
 					"kindString": "Method",
@@ -862,20 +929,20 @@
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 128,
+							"line": 217,
 							"character": 26
 						}
 					],
 					"signatures": [
 						{
-							"id": 41,
+							"id": 51,
 							"name": "publishApi",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 42,
+									"id": 52,
 									"name": "client",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -886,7 +953,64 @@
 									}
 								},
 								{
-									"id": 43,
+									"id": 53,
+									"name": "params",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "any"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"typeArguments": [
+									{
+										"type": "intrinsic",
+										"name": "any"
+									}
+								],
+								"name": "Promise"
+							}
+						}
+					]
+				},
+				{
+					"id": 30,
+					"name": "reCreateOrUpdateApi",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 97,
+							"character": 27
+						}
+					],
+					"signatures": [
+						{
+							"id": 31,
+							"name": "reCreateOrUpdateApi",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 32,
+									"name": "client",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "any"
+									}
+								},
+								{
+									"id": 33,
 									"name": "params",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -919,7 +1043,7 @@
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 59,
+							"line": 73,
 							"character": 25
 						}
 					],
@@ -968,7 +1092,7 @@
 					]
 				},
 				{
-					"id": 51,
+					"id": 61,
 					"name": "setDomain",
 					"kind": 2048,
 					"kindString": "Method",
@@ -978,20 +1102,20 @@
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 143,
+							"line": 232,
 							"character": 25
 						}
 					],
 					"signatures": [
 						{
-							"id": 52,
+							"id": 62,
 							"name": "setDomain",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 53,
+									"id": 63,
 									"name": "client",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1002,7 +1126,7 @@
 									}
 								},
 								{
-									"id": 54,
+									"id": 64,
 									"name": "params",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1037,7 +1161,7 @@
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 17,
+							"line": 27,
 							"character": 19
 						}
 					],
@@ -1073,6 +1197,88 @@
 							}
 						}
 					]
+				},
+				{
+					"id": 24,
+					"name": "tryExecuteFunction",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 77,
+							"character": 26
+						}
+					],
+					"signatures": [
+						{
+							"id": 25,
+							"name": "tryExecuteFunction",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 26,
+									"name": "fc",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "any"
+									}
+								},
+								{
+									"id": 27,
+									"name": "currentRetryTime",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "1"
+								},
+								{
+									"id": 28,
+									"name": "waittime",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "5"
+								},
+								{
+									"id": 29,
+									"name": "retryError",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									},
+									"defaultValue": "..."
+								}
+							],
+							"type": {
+								"type": "reference",
+								"typeArguments": [
+									{
+										"type": "intrinsic",
+										"name": "void"
+									}
+								],
+								"name": "Promise"
+							}
+						}
+					]
 				}
 			],
 			"groups": [
@@ -1088,7 +1294,7 @@
 					"kind": 1024,
 					"children": [
 						5,
-						63,
+						78,
 						6
 					]
 				},
@@ -1096,29 +1302,31 @@
 					"title": "Methods",
 					"kind": 2048,
 					"children": [
-						28,
-						66,
-						64,
-						69,
-						55,
-						24,
-						58,
-						44,
+						38,
+						81,
+						79,
+						84,
+						65,
+						34,
+						68,
+						54,
 						11,
-						32,
+						42,
 						15,
-						36,
-						40,
+						46,
+						50,
+						30,
 						20,
-						51,
-						7
+						61,
+						7,
+						24
 					]
 				}
 			],
 			"sources": [
 				{
 					"fileName": "index.ts",
-					"line": 8,
+					"line": 18,
 					"character": 34
 				}
 			],

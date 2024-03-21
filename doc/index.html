@@ -77,6 +77,64 @@
 					<h3>应用编排使用方式</h3>
 				</a>
 				<p>查看 example下 s.yaml</p>
+				<pre><code class="language-yaml"><span style="color: #800000">edition</span><span style="color: #000000">: </span><span style="color: #098658">1.0.0</span><span style="color: #000000"> </span><span style="color: #008000">#  命令行YAML规范版本，遵循语义化版本（Semantic Versioning）规范</span>
+<span style="color: #800000">name</span><span style="color: #000000">: </span><span style="color: #0000FF">component-test</span><span style="color: #000000"> </span><span style="color: #008000">#  项目名称</span>
+<span style="color: #800000">access</span><span style="color: #000000">: </span><span style="color: #0000FF">simplemvc</span>
+<span style="color: #800000">vars</span><span style="color: #000000">: </span><span style="color: #008000"># [全局变量，提供给各个服务使用]</span>
+<span style="color: #000000">  </span><span style="color: #800000">region</span><span style="color: #000000">: </span><span style="color: #0000FF">cn-hongkong</span>
+<span style="color: #000000">  </span><span style="color: #800000">groupName</span><span style="color: #000000">: </span><span style="color: #0000FF">test</span>
+<span style="color: #800000">services</span><span style="color: #000000">:</span>
+<span style="color: #000000">  </span><span style="color: #800000">gateway</span><span style="color: #000000">: </span><span style="color: #008000">#  服务名称</span>
+<span style="color: #000000">    </span><span style="color: #800000">component</span><span style="color: #000000">: </span><span style="color: #0000FF">apigateway</span><span style="color: #000000"> </span><span style="color: #008000"># 这里引入的是相对路径，正式配置替换成你自己的component名称即可</span>
+<span style="color: #000000">    </span><span style="color: #800000">props</span><span style="color: #000000">:</span>
+<span style="color: #000000">      </span><span style="color: #800000">apis</span><span style="color: #000000">:</span>
+<span style="color: #000000">        - </span><span style="color: #800000">apiName</span><span style="color: #000000">: </span><span style="color: #0000FF">test</span>
+<span style="color: #000000">          </span><span style="color: #800000">regionId</span><span style="color: #000000">: </span><span style="color: #0000FF">${vars.region}</span>
+<span style="color: #000000">          </span><span style="color: #800000">requestConfig</span><span style="color: #000000">:</span>
+<span style="color: #000000">            </span><span style="color: #800000">requestHttpMethod</span><span style="color: #000000">: </span><span style="color: #0000FF">PATCH</span>
+<span style="color: #000000">            </span><span style="color: #800000">requestMode</span><span style="color: #000000">: </span><span style="color: #0000FF">PASSTHROUGH</span>
+<span style="color: #000000">            </span><span style="color: #800000">requestPath</span><span style="color: #000000">: </span><span style="color: #0000FF">/v1/xxx/[id]/xxx</span>
+<span style="color: #000000">            </span><span style="color: #800000">requestProtocol</span><span style="color: #000000">: </span><span style="color: #0000FF">HTTPS</span>
+<span style="color: #000000">          </span><span style="color: #800000">requestParameters</span><span style="color: #000000">:</span>
+<span style="color: #000000">              - </span><span style="color: #800000">apiParameterName</span><span style="color: #000000">: </span><span style="color: #0000FF">id</span>
+<span style="color: #000000">                </span><span style="color: #800000">location</span><span style="color: #000000">: </span><span style="color: #0000FF">PATH</span>
+<span style="color: #000000">                </span><span style="color: #800000">parameterType</span><span style="color: #000000">: </span><span style="color: #0000FF">String</span>
+<span style="color: #000000">                </span><span style="color: #800000">required</span><span style="color: #000000">: </span><span style="color: #0000FF">REQUIRED</span>
+<span style="color: #000000">                </span><span style="color: #800000">defaultValue</span><span style="color: #000000">: </span><span style="color: #0000FF">dddddd</span>
+<span style="color: #000000">                </span><span style="color: #800000">description</span><span style="color: #000000">: </span><span style="color: #0000FF">ddddddddd</span>
+<span style="color: #000000">          </span><span style="color: #800000">serviceParameters</span><span style="color: #000000">:</span>
+<span style="color: #000000">              - </span><span style="color: #800000">serviceParameterName</span><span style="color: #000000">: </span><span style="color: #0000FF">id</span>
+<span style="color: #000000">                </span><span style="color: #800000">location</span><span style="color: #000000">: </span><span style="color: #0000FF">PATH</span>
+<span style="color: #000000">                </span><span style="color: #800000">type</span><span style="color: #000000">: </span><span style="color: #0000FF">String</span>
+<span style="color: #000000">                </span><span style="color: #800000">parameterCatalog</span><span style="color: #000000">: </span><span style="color: #0000FF">REQUEST</span>
+<span style="color: #000000">          </span><span style="color: #800000">serviceParametersMap</span><span style="color: #000000">:</span>
+<span style="color: #000000">              - </span><span style="color: #800000">serviceParameterName</span><span style="color: #000000">: </span><span style="color: #0000FF">id</span>
+<span style="color: #000000">                </span><span style="color: #800000">requestParameterName</span><span style="color: #000000">: </span><span style="color: #0000FF">id</span>
+<span style="color: #000000">          </span><span style="color: #800000">serviceConfig</span><span style="color: #000000">:</span>
+<span style="color: #000000">            </span><span style="color: #800000">functionComputeConfig</span><span style="color: #000000">:</span>
+<span style="color: #000000">              </span><span style="color: #800000">fcRegionId</span><span style="color: #000000">: </span><span style="color: #0000FF">${vars.region}</span>
+<span style="color: #000000">              </span><span style="color: #800000">fcType</span><span style="color: #000000">: </span><span style="color: #0000FF">FCEvent</span>
+<span style="color: #000000">              </span><span style="color: #800000">functionName</span><span style="color: #000000">: </span><span style="color: #0000FF">auto</span>
+<span style="color: #000000">              </span><span style="color: #800000">serviceName</span><span style="color: #000000">: </span><span style="color: #0000FF">test</span>
+<span style="color: #000000">            </span><span style="color: #800000">resultType</span><span style="color: #000000">: </span><span style="color: #0000FF">JSON</span>
+<span style="color: #000000">            </span><span style="color: #800000">servicePath</span><span style="color: #000000">: </span><span style="color: #0000FF">/</span>
+<span style="color: #000000">            </span><span style="color: #800000">serviceProtocol</span><span style="color: #000000">: </span><span style="color: #0000FF">FunctionCompute</span>
+<span style="color: #000000">            </span><span style="color: #800000">serviceTimeout</span><span style="color: #000000">: </span><span style="color: #098658">30000</span>
+<span style="color: #000000">      </span><span style="color: #800000">groupName</span><span style="color: #000000">: </span><span style="color: #0000FF">${vars.groupName}</span>
+<span style="color: #000000">      </span><span style="color: #800000">regionId</span><span style="color: #000000">: </span><span style="color: #0000FF">${vars.region}</span>
+<span style="color: #000000">      </span><span style="color: #800000">stageName</span><span style="color: #000000">: </span><span style="color: #0000FF">RELEASE</span>
+<span style="color: #000000">        </span>
+<span style="color: #000000">  </span><span style="color: #008000"># dns: # 网站解析</span>
+<span style="color: #000000">  </span><span style="color: #008000">#   componnet: dns</span>
+<span style="color: #000000">  </span><span style="color: #008000">#   props:</span>
+<span style="color: #000000">  </span><span style="color: #008000">#     domain: ${vars.domain}</span>
+
+</code></pre>
+				<a href="#更多说明" id="更多说明" style="color: inherit; text-decoration: none;">
+					<h2>更多说明</h2>
+				</a>
+				<p>apis属性对齐apigateway createApi 内容，详细地址
+				<a href="https://help.aliyun.com/document_detail/394364.html">https://help.aliyun.com/document_detail/394364.html</a></p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">

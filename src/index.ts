@@ -47,12 +47,16 @@ export default class ComponentDemo extends BaseComponent {
   private getClient(credentials, region) {
     if (!this.client || this.region !== region) {
       this.region = region;
-      this.client = new Core({
+      const defaultCredential = {
         accessKeyId: credentials.AccessKeyID,
         accessKeySecret: credentials.AccessKeySecret,
         endpoint: `https://apigateway.${region}.aliyuncs.com`,
         apiVersion: '2016-07-14'
-      });
+      }
+      if(credentials.SecurityToken) {
+        defaultCredential['securityToken'] = credentials.SecurityToken;
+      }
+      this.client = new Core(defaultCredential);
     }
     return this.client;
   }
@@ -269,7 +273,7 @@ export default class ComponentDemo extends BaseComponent {
     const { credentials } = inputs;
     const { AccountID } = credentials;
     const apiArn = `acs:ram::${AccountID}:role/aliyunserviceroleforapigateway`;
-    let { apis, groupName, stageName = 'RELEASE', regionId, basePath = '/', description = '', instanceId = SHARED_API_INSTANCE, customerDomain } = inputs.props;
+    let { apis, groupName, stageName = 'RELEASE', regionId, basePath = '/', description = '', instanceId = SHARED_API_INSTANCE } = inputs.props;
 
     let client = this.getClient(credentials, regionId);
     let { GroupId, SubDomain } = await this.executeGroup(client, { groupName, regionId, basePath, description, instanceId });

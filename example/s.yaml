@@ -1,13 +1,13 @@
 edition: 1.0.0 #  命令行YAML规范版本，遵循语义化版本（Semantic Versioning）规范
 name: component-test #  项目名称
-access: simplemvc
+access: agentcraft
 vars: # [全局变量，提供给各个服务使用]
   region: cn-hangzhou
   groupName: multiapis
   stageName: RELEASE
 services:
   gateway: #  服务名称
-    component: ../lib # 这里引入的是相对路径，正式配置替换成你自己的component名称即可
+    component: /Users/hanxie/opensource/devsapp/apigateway #apigateway # 这里引入的是相对路径，正式配置替换成你自己的component名称即可
     props:
       groupName: ${vars.groupName}
       regionId: ${vars.region}
@@ -144,41 +144,9 @@ services:
         - apiName: test5
           regionId: ${vars.region}
           requestConfig:
-            requestHttpMethod: PATCH
+            requestHttpMethod: POST
             requestMode: PASSTHROUGH
-            requestPath: /v1/accounts/[id]/costdata5
-            requestProtocol: HTTPS
-          requestParameters:
-              - apiParameterName: id
-                location: PATH
-                parameterType: String
-                required: REQUIRED
-                defaultValue: 
-                description: 
-          serviceParameters:
-              - serviceParameterName: id
-                location: PATH
-                type: String
-                parameterCatalog: REQUEST
-          serviceParametersMap:
-              - serviceParameterName: id
-                requestParameterName: id
-          serviceConfig:
-            functionComputeConfig:
-              fcRegionId: ${vars.region}
-              fcType: FCEvent
-              functionName: auto
-              serviceName: test
-            resultType: JSON
-            servicePath: /
-            serviceProtocol: FunctionCompute
-            serviceTimeout: 30000
-        - apiName: test6
-          regionId: ${vars.region}
-          requestConfig:
-            requestHttpMethod: PATCH
-            requestMode: PASSTHROUGH
-            requestPath: /v1/accounts/[id]/costdata5
+            requestPath: /v1/accounts/[id]/costdata4
             requestProtocol: HTTPS
           requestParameters:
               - apiParameterName: id
