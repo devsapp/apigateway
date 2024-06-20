@@ -6,7 +6,7 @@ vars: # [全局变量，提供给各个服务使用]
   stageName: RELEASE
 services:
   gateway: #  服务名称
-    component: apigateway # 这里引入的是相对路径，正式配置替换成你自己的component名称即可
+    component: apigateway@0.0.10 # 这里引入的是相对路径，正式配置替换成你自己的component名称即可
     props:
       groupName: ${vars.groupName}
       regionId: ${vars.region}

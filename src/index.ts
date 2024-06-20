@@ -53,7 +53,7 @@ export default class ComponentDemo extends BaseComponent {
         endpoint: `https://apigateway.${region}.aliyuncs.com`,
         apiVersion: '2016-07-14'
       }
-      if(credentials.SecurityToken) {
+      if (credentials.SecurityToken) {
         defaultCredential['securityToken'] = credentials.SecurityToken;
       }
       this.client = new Core(defaultCredential);
@@ -299,6 +299,9 @@ export default class ComponentDemo extends BaseComponent {
       transformedData.RequestParameters = JSON.stringify(transformedData.RequestParameters);
       transformedData.ServiceParametersMap = JSON.stringify(transformedData.ServiceParametersMap);
       transformedData.ServiceParameters = JSON.stringify(transformedData.ServiceParameters);
+      if (transformedData.SystemParameters) {
+        transformedData.SystemParameters = JSON.stringify(transformedData.ServiceParameters);
+      }
       const data = await this.createOrUpdateApi(client, transformedData);
       let publishResult: any = {};
       if (data.modifySuccess) {
