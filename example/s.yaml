@@ -1,12 +1,13 @@
 edition: 1.0.0 #  命令行YAML规范版本，遵循语义化版本（Semantic Versioning）规范
 name: component-test #  项目名称
+access: agentcraft
 vars: # [全局变量，提供给各个服务使用]
   region: cn-hangzhou
   groupName: multiapis
   stageName: RELEASE
 services:
   gateway: #  服务名称
-    component: apigateway@0.0.10 # 这里引入的是相对路径，正式配置替换成你自己的component名称即可
+    component: /Users/hanxie/localproject/devsapp/apigateway # 这里引入的是相对路径，正式配置替换成你自己的component名称即可
     props:
       groupName: ${vars.groupName}
       regionId: ${vars.region}
@@ -26,14 +27,26 @@ services:
                 required: REQUIRED
                 defaultValue: 
                 description: 
+              - apiParameterName: CaClientIp
+                location: Head
+                parameterType: String
+                required: REQUIRED
+                defaultValue: 
+                description: 
           serviceParameters:
               - serviceParameterName: id
                 location: PATH
                 type: String
                 parameterCatalog: REQUEST
+              - serviceParameterName: caipd   #系统参数类型
+                location: Head
+                type: String
+                parameterCatalog: SYSTEM
           serviceParametersMap:
               - serviceParameterName: id
                 requestParameterName: id
+              - serviceParameterName: caipd  # 系统参数类型跟服务的映射，系统参数列表及说明https://help.aliyun.com/zh/api-gateway/user-guide/create-an-api?spm=a2c4g.11186623.0.0.603c26decTauOL
+                requestParameterName: CaClientIp  
           serviceConfig:
             functionComputeConfig:
               fcRegionId: ${vars.region}

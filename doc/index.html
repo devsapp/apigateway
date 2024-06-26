@@ -102,14 +102,26 @@
 <span style="color: #000000">                </span><span style="color: #800000">required</span><span style="color: #000000">: </span><span style="color: #0000FF">REQUIRED</span>
 <span style="color: #000000">                </span><span style="color: #800000">defaultValue</span><span style="color: #000000">: </span><span style="color: #0000FF">dddddd</span>
 <span style="color: #000000">                </span><span style="color: #800000">description</span><span style="color: #000000">: </span><span style="color: #0000FF">ddddddddd</span>
+<span style="color: #000000">              - </span><span style="color: #800000">apiParameterName</span><span style="color: #000000">: </span><span style="color: #0000FF">CaClientIp</span>
+<span style="color: #000000">                </span><span style="color: #800000">location</span><span style="color: #000000">: </span><span style="color: #0000FF">Head</span>
+<span style="color: #000000">                </span><span style="color: #800000">parameterType</span><span style="color: #000000">: </span><span style="color: #0000FF">String</span>
+<span style="color: #000000">                </span><span style="color: #800000">required</span><span style="color: #000000">: </span><span style="color: #0000FF">REQUIRED</span>
+<span style="color: #000000">                </span><span style="color: #800000">defaultValue</span><span style="color: #000000">: </span>
+<span style="color: #000000">                </span><span style="color: #800000">description</span><span style="color: #000000">: </span>
 <span style="color: #000000">          </span><span style="color: #800000">serviceParameters</span><span style="color: #000000">:</span>
 <span style="color: #000000">              - </span><span style="color: #800000">serviceParameterName</span><span style="color: #000000">: </span><span style="color: #0000FF">id</span>
 <span style="color: #000000">                </span><span style="color: #800000">location</span><span style="color: #000000">: </span><span style="color: #0000FF">PATH</span>
 <span style="color: #000000">                </span><span style="color: #800000">type</span><span style="color: #000000">: </span><span style="color: #0000FF">String</span>
 <span style="color: #000000">                </span><span style="color: #800000">parameterCatalog</span><span style="color: #000000">: </span><span style="color: #0000FF">REQUEST</span>
+<span style="color: #000000">              - </span><span style="color: #800000">serviceParameterName</span><span style="color: #000000">: </span><span style="color: #0000FF">caipd</span><span style="color: #000000">   </span><span style="color: #008000">#系统参数类型</span>
+<span style="color: #000000">                </span><span style="color: #800000">location</span><span style="color: #000000">: </span><span style="color: #0000FF">Head</span>
+<span style="color: #000000">                </span><span style="color: #800000">type</span><span style="color: #000000">: </span><span style="color: #0000FF">String</span>
+<span style="color: #000000">                </span><span style="color: #800000">parameterCatalog</span><span style="color: #000000">: </span><span style="color: #0000FF">SYSTEM</span>
 <span style="color: #000000">          </span><span style="color: #800000">serviceParametersMap</span><span style="color: #000000">:</span>
 <span style="color: #000000">              - </span><span style="color: #800000">serviceParameterName</span><span style="color: #000000">: </span><span style="color: #0000FF">id</span>
 <span style="color: #000000">                </span><span style="color: #800000">requestParameterName</span><span style="color: #000000">: </span><span style="color: #0000FF">id</span>
+<span style="color: #000000">               - </span><span style="color: #800000">serviceParameterName</span><span style="color: #000000">: </span><span style="color: #0000FF">caipd</span><span style="color: #000000">  </span><span style="color: #008000"># 系统参数类型跟服务的映射，系统参数列表及说明https://help.aliyun.com/zh/api-gateway/user-guide/create-an-api?spm=a2c4g.11186623.0.0.603c26decTauOL</span>
+<span style="color: #000000">                </span><span style="color: #800000">requestParameterName</span><span style="color: #000000">: </span><span style="color: #0000FF">CaClientIp</span><span style="color: #000000">  </span>
 <span style="color: #000000">          </span><span style="color: #800000">serviceConfig</span><span style="color: #000000">:</span>
 <span style="color: #000000">            </span><span style="color: #800000">functionComputeConfig</span><span style="color: #000000">:</span>
 <span style="color: #000000">              </span><span style="color: #800000">fcRegionId</span><span style="color: #000000">: </span><span style="color: #0000FF">${vars.region}</span>

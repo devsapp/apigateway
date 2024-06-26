@@ -90,7 +90,6 @@ export interface ApiInputProps {
     RequestConfig: RequestConfig;
     ServiceConfig: ServiceConfig;
     RequestParameters?: RequestParameter[];
-    SystemParameters?: string;
     ConstantParameters?: string;
     ServiceParameters?: ServiceParameter[];
     ServiceParametersMap: ServiceParameterMap[];

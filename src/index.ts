@@ -299,9 +299,9 @@ export default class ComponentDemo extends BaseComponent {
       transformedData.RequestParameters = JSON.stringify(transformedData.RequestParameters);
       transformedData.ServiceParametersMap = JSON.stringify(transformedData.ServiceParametersMap);
       transformedData.ServiceParameters = JSON.stringify(transformedData.ServiceParameters);
-      if (transformedData.SystemParameters) {
-        transformedData.SystemParameters = JSON.stringify(transformedData.ServiceParameters);
-      }
+      // if (transformedData.SystemParameters) {  
+      //   transformedData.SystemParameters = JSON.stringify(transformedData.SystemParameters);
+      // }
       const data = await this.createOrUpdateApi(client, transformedData);
       let publishResult: any = {};
       if (data.modifySuccess) {

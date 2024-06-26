@@ -40,14 +40,26 @@ services:
                 required: REQUIRED
                 defaultValue: dddddd
                 description: ddddddddd
+              - apiParameterName: CaClientIp
+                location: Head
+                parameterType: String
+                required: REQUIRED
+                defaultValue: 
+                description: 
           serviceParameters:
               - serviceParameterName: id
                 location: PATH
                 type: String
                 parameterCatalog: REQUEST
+              - serviceParameterName: caipd   #系统参数类型
+                location: Head
+                type: String
+                parameterCatalog: SYSTEM
           serviceParametersMap:
               - serviceParameterName: id
                 requestParameterName: id
+               - serviceParameterName: caipd  # 系统参数类型跟服务的映射，系统参数列表及说明https://help.aliyun.com/zh/api-gateway/user-guide/create-an-api?spm=a2c4g.11186623.0.0.603c26decTauOL
+                requestParameterName: CaClientIp  
           serviceConfig:
             functionComputeConfig:
               fcRegionId: ${vars.region}

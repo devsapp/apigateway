@@ -96,7 +96,7 @@ export interface ICredentials {
     RequestConfig: RequestConfig, // Consumer向网关发送API请求的相关配置项。
     ServiceConfig: ServiceConfig,  // 网关向后端服务发送API请求的相关配置项。
     RequestParameters?: RequestParameter[], // Consumer向网关发送API请求的参数描述。
-    SystemParameters?: string,  // 参数取值来源 API：
+    // SystemParameters?: string,  // 参数取值来源 API：
     ConstantParameters?:string, // 参数取值来源 API：
     ServiceParameters?: ServiceParameter[], // 网关向后端服务发送API请求的参数描述。
     ServiceParametersMap: ServiceParameterMap[], // Consumer向网关发送请求的参数和网关向后端服务发送的请求的参数的映射关系。
